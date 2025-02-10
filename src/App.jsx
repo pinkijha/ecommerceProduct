@@ -1,12 +1,13 @@
-
+import Header from "./components/Header";
+import Products from "./components/Products";
 
 function App() {
-
   return (
     <div>
-      <h1 className='text-red-400'>Hello</h1>
+     <Header/>
+     <Products/>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
