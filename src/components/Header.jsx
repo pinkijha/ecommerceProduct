@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { useContextGlobalApi } from '../context/useContextApp';
 
 const Header = () => {
-  const {addCart, setAddCart} = useContextGlobalApi()
+  const {addCart, cart} = useContextGlobalApi()
   return (
     <div className='flex shadow-md items-center justify-between'>
       <div>
