@@ -7,6 +7,12 @@ export const ContextApiProvider = ({children}) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [debouncing, setDebouncing ] = useState('');
     const [addCart, setAddCart] = useState(0);
+    const [cart, setCart] = useState([]);
+
+     // Function to add items to cart
+     const addToCart = (product) => {
+        setCart([...cart, product])
+     }
 
     useEffect(()=>{
         const fetchProducts = async() =>{
@@ -35,7 +41,7 @@ export const ContextApiProvider = ({children}) => {
 
     return (
         <ContextApi.Provider value={{products, setProducts, searchTerm, setSearchTerm,  addCart, setAddCart,
-         debouncing, setDebouncing}}>
+         debouncing, setDebouncing, cart, setCart, addToCart}}>
             {children}
         </ContextApi.Provider>
     )
