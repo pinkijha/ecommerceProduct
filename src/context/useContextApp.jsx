@@ -4,7 +4,8 @@ export const ContextApi = createContext();
 
 export const ContextApiProvider = ({children}) => {
     const [products, setProducts] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('')
+    const [searchTerm, setSearchTerm] = useState('');
+    const [debouncing, setDebouncing ] = useState('')
 
     useEffect(()=>{
         const fetchProducts = async() =>{
@@ -32,7 +33,7 @@ export const ContextApiProvider = ({children}) => {
     }, []);
 
     return (
-        <ContextApi.Provider value={{products, setProducts, searchTerm, setSearchTerm}}>
+        <ContextApi.Provider value={{products, setProducts, searchTerm, setSearchTerm, debouncing, setDebouncing}}>
             {children}
         </ContextApi.Provider>
     )
