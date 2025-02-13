@@ -13,15 +13,15 @@ const Cart = () => {
             ) : (
                 <>
                     {cart.map((item, index) => (
-                        <div key={index} className='flex space-x-4 md:mt-2 p-2 shadow'>
-                            <img src={item.thumbnail} className='w-30 h-30 rounded-xl shadow-2xs' alt={item.title} />
+                        <div key={index} className='flex space-x-4 md:mt-2 p-2 border border-gray-200 rounded-2xl'>
+                            <img src={item.thumbnail} className='w-30 h-30 ' alt={item.title} />
                             <div>
                                 <p className='text-lg font-medium'>{item.title}</p>
                                 <p className='text-sm'>{item.description}</p>
                                 <p className=''>${item.price}</p>
                                 {/* ✅ Remove from cart button */}
                                 <button
-                                    className="bg-red-500 text-white px-4 py-1 rounded mt-2"
+                                    className="bg-red-500 text-white px-4 cursor-pointer py-1 rounded mt-2"
                                     onClick={() => removeFromCart(item.id)}
                                 >
                                     Remove

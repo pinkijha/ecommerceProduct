@@ -34,7 +34,7 @@ const Search = () => {
         {/* Typing Animation inside Input Field (Only if Input is Empty) */}
         <div className="absolute z-10 left-2 text-xs top-2">
           {searchTerm === "" && (
-            <div className="md:ml-10 text-gray-500">
+            <div className="md:ml-6 text-gray-500">
               <ReactTyped
                 className=""
                 strings={[

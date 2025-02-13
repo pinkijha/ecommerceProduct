@@ -7,32 +7,32 @@ export const ContextApiProvider = ({ children }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [debouncing, setDebouncing] = useState('');
     
-    // ✅ Initialize cart from localStorage
+    //  Initialize cart from localStorage
     const [cart, setCart] = useState(() => {
         const savedCart = localStorage.getItem("cart");
         return savedCart ? JSON.parse(savedCart) : [];
     });
 
-    // ✅ Initialize addCart count from localStorage
+    //  Initialize addCart count from localStorage
     const [addCart, setAddCart] = useState(cart.length);
 
-    // ✅ Function to add item to cart
+    //  Function to add item to cart
     const addToCart = (product) => {
         const updatedCart = [...cart, product];
         setCart(updatedCart);
-        setAddCart(updatedCart.length);  // ✅ Update addCart count
-        localStorage.setItem("cart", JSON.stringify(updatedCart));  // ✅ Store in localStorage
+        setAddCart(updatedCart.length);  // Update addCart count
+        localStorage.setItem("cart", JSON.stringify(updatedCart));  //  Store in localStorage
     };
 
-    // ✅ Function to remove item from cart
+    //  Function to remove item from cart
     const removeFromCart = (productId) => {
         const updatedCart = cart.filter((item) => item.id !== productId);
         setCart(updatedCart);
-        setAddCart(updatedCart.length);  // ✅ Update addCart count
-        localStorage.setItem("cart", JSON.stringify(updatedCart));  // ✅ Update localStorage
+        setAddCart(updatedCart.length);  //  Update addCart count
+        localStorage.setItem("cart", JSON.stringify(updatedCart));  //  Update localStorage
     };
 
-    // ✅ Sync addCart count with localStorage when cart changes
+    //  Sync addCart count with localStorage when cart changes
     useEffect(() => {
         setAddCart(cart.length);
         localStorage.setItem("cart", JSON.stringify(cart));
