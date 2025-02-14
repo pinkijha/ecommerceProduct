@@ -5,7 +5,7 @@ import { FaFilter } from "react-icons/fa6";
 import Filter from './Filter';
 
 const Products = () => {
-  const { products, searchTerm, addCart, setAddCart, addToCart, filter, filterHandler } = useContextGlobalApi();
+  const { products, searchTerm, addCart, setAddCart, addToCart, filter, setFilter, filterHandler } = useContextGlobalApi();
  
 
   const handleCart = (product) => {
@@ -26,7 +26,8 @@ const Products = () => {
     <>
       <div className='relative flex gap-5  text-2xl md:mt-5 md:ml-[90px]'>
       <h1 className=' font-semibold'>Products</h1>
-      <button onClick={filterHandler} className=' cursor-pointer border border-gray-300 md:p-1.5 items-center hover:scale-105 duration-200
+      <button onClick={filterHandler} onBlur={() => setFilter(false)}
+      className='outline-none cursor-pointer border border-gray-300 md:p-1.5 items-center hover:scale-105 duration-200
        hover:bg-gray-100 rounded-full text-blue-700'>
        <FaFilter  /> 
          </button>

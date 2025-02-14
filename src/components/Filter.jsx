@@ -23,7 +23,7 @@ const Filter = () => {
             <span className="text-sm font-semibold">Name</span>
             <select className="border border-gray-300 text-xs rounded-md px-2 py-1 w-full">
               <option>All</option>
-              <option>Red Lipstick</option>
+              <option>Lipstick</option>
               <option>Nail Polish</option>
               <option>Mascara</option>
               <option>Calvin Klein</option>
