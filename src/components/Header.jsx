@@ -4,6 +4,7 @@ import Search from './Search';
 import { NavLink } from 'react-router-dom';
 import { useContextGlobalApi } from '../context/useContextApp';
 
+
 const Header = () => {
   const {addCart, cart} = useContextGlobalApi()
   return (

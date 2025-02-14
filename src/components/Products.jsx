@@ -1,9 +1,11 @@
 import React from 'react';
 import { FaCartPlus } from "react-icons/fa";
 import { useContextGlobalApi } from '../context/useContextApp';
+import { FaFilter } from "react-icons/fa6";
+import Filter from './Filter';
 
 const Products = () => {
-  const { products, searchTerm, addCart, setAddCart, addToCart } = useContextGlobalApi();
+  const { products, searchTerm, addCart, setAddCart, addToCart, filter, filterHandler } = useContextGlobalApi();
  
 
   const handleCart = (product) => {
@@ -22,7 +24,20 @@ const Products = () => {
 
   return (
     <>
-      <h1 className='md:mt-5 md:ml-[90px] font-semibold text-2xl'>Products</h1>
+      <div className='relative flex gap-5  text-2xl md:mt-5 md:ml-[90px]'>
+      <h1 className=' font-semibold'>Products</h1>
+      <button onClick={filterHandler} className=' cursor-pointer border border-gray-300 md:p-1.5 items-center hover:scale-105 duration-200
+       hover:bg-gray-100 rounded-full text-blue-700'>
+       <FaFilter  /> 
+         </button>
+
+         <div className='absolute z-10 top-9 left-30'>
+         
+          {filter ? <Filter/> : ''}
+         </div>
+      </div>
+      
+      
       <div className='flex flex-wrap md:mx-10 md:mb-8'>
         {filteredProducts.length > 0 ? (
           filteredProducts.map((items) => (

@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import Filter from "../components/Filter";
 
 export const ContextApi = createContext();
 
@@ -6,7 +7,15 @@ export const ContextApiProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [debouncing, setDebouncing] = useState('');
-    
+    const [filter, setFilter] = useState(false);
+
+
+    // Filter Toggle
+    const filterHandler = () => {
+        setFilter(!filter);
+        
+    }
+     
     //  Initialize cart from localStorage
     const [cart, setCart] = useState(() => {
         const savedCart = localStorage.getItem("cart");
@@ -59,7 +68,7 @@ export const ContextApiProvider = ({ children }) => {
         <ContextApi.Provider value={{
             products, setProducts, searchTerm, setSearchTerm,
             addCart, setAddCart, debouncing, setDebouncing,
-            cart, setCart, addToCart, removeFromCart
+            cart, setCart, addToCart, removeFromCart, filter, setFilter, filterHandler,
         }}>
             {children}
         </ContextApi.Provider>

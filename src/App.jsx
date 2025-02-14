@@ -2,7 +2,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Products from "./components/Products";
 import { ContextApiProvider } from "./context/useContextApp";
-import Cart from "./components/Cart";
+import Cart from "./components/Cart";  
 
 function App() {
   return (
