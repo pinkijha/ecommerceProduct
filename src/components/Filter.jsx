@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 
-const Filter = () => {
+const Filter = ({ setFilterCriteria }) => {
   const [price, setPrice] =useState(50);
+  const [selectedBrand, setSelectedBrand] = useState("");
+  const [selectedName, setSelectedName] = useState("");
+
+  const handleFilterChange = () => {
+    setFilterCriteria({ brand: selectedBrand, name: selectedName, price });
+  };
   return (
     <>
       <svg
@@ -21,7 +27,12 @@ const Filter = () => {
         <section className="space-y-3">
           <div className="grid grid-cols-2 items-center gap-x-4">
             <span className="text-sm font-semibold">Name</span>
-            <select className="border border-gray-300 text-xs rounded-md px-2 py-1 w-full">
+            <select value={selectedName}
+            onChange={(e) => {
+              setSelectedName(e.target.value);
+              handleFilterChange();
+            }}
+            className="border border-gray-300 text-xs rounded-md px-2 py-1 w-full">
               <option>All</option>
               <option>Lipstick</option>
               <option>Nail Polish</option>
@@ -32,7 +43,12 @@ const Filter = () => {
 
           <div className="grid grid-cols-2 items-center gap-x-4">
             <span className="text-sm font-semibold">Brands</span>
-            <select className="border border-gray-300 text-xs rounded-md px-2 py-1 w-full">
+            <select value={selectedBrand}
+            onChange={(e) => {
+              setSelectedBrand(e.target.value);
+              handleFilterChange();
+            }}
+            className="border border-gray-300 text-xs rounded-md px-2 py-1 w-full">
               <option>All</option>
               <option>Essence</option>
               <option>Gucci</option>
@@ -43,7 +59,11 @@ const Filter = () => {
           <div className='grid grid-cols-2 items-center gap-x-4'>
             <span className="text-sm font-semibold items-center">Price ${price}</span>
          <div className='flex flex-col'>
-         <input value={price} onChange={(e) => setPrice(e.target.value)} type='range' min='1' max='3000'
+         <input value={price}
+              onChange={(e) => {
+                setPrice(e.target.value);
+                handleFilterChange();
+              }}  type='range' min='1' max='3000'
              className='cursor-pointer'  />
 
              {/* Min & Max Labels */}

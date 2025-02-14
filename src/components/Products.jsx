@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaCartPlus } from "react-icons/fa";
 import { useContextGlobalApi } from '../context/useContextApp';
 import { FaFilter } from "react-icons/fa6";
@@ -6,7 +6,8 @@ import Filter from './Filter';
 
 const Products = () => {
   const { products, searchTerm, addCart, setAddCart, addToCart, filter, setFilter, filterHandler } = useContextGlobalApi();
- 
+  const [filterCriteria, setFilterCriteria] = useState({ brand: "", name: "", price: 3000 });
+
 
   const handleCart = (product) => {
     setAddCart(addCart + 1);
@@ -14,19 +15,24 @@ const Products = () => {
     addToCart(product);
   };
 
-  // Filter products based on search input
-  const filteredProducts = products?.length
-    ? products.filter((product) =>
-        product.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.brand?.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    : [];
+ 
+
+
+  // Filter Products Based on Search & Filter Criteria
+  const filteredProducts = products?.filter((product) => {
+    return (
+      (filterCriteria.brand === "" || product.brand?.toLowerCase().includes(filterCriteria.brand.toLowerCase())) &&
+      (filterCriteria.name === "" || product.title?.toLowerCase().includes(filterCriteria.name.toLowerCase())) &&
+      product.price <= filterCriteria.price &&
+      (searchTerm === "" || product.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+  });
 
   return (
     <>
       <div className='relative flex gap-5  text-2xl md:mt-5 md:ml-[90px]'>
       <h1 className=' font-semibold'>Products</h1>
-      <button onClick={filterHandler} onBlur={() => setFilter(false)}
+      <button onClick={filterHandler} 
       className='outline-none cursor-pointer border border-gray-300 md:p-1.5 items-center hover:scale-105 duration-200
        hover:bg-gray-100 rounded-full text-blue-700'>
        <FaFilter  /> 
@@ -34,7 +40,7 @@ const Products = () => {
 
          <div className='absolute z-10 top-9 left-30'>
          
-          {filter ? <Filter/> : ''}
+          {filter ? <Filter setFilterCriteria={setFilterCriteria} /> : ''}
          </div>
       </div>
       
